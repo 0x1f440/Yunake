@@ -7,12 +7,12 @@
 using namespace std;
 
 Game::Game() {
-    this->snake = new Snake();
+    this->snake = new Snake(24, 40);
     this->map = new GameMap(24, 40);
 }
 
 Game::Game(int mapHeight, int mapWidth) {
-    this->snake = new Snake();
+    this->snake = new Snake(mapHeight, mapWidth);
     this->map = new GameMap(mapHeight, mapWidth);
 }
 
@@ -24,21 +24,6 @@ Game::~Game() {
 int sumFrame;
 
 void Game::renderScene() {
-    // GameMap과 Snake를 참조하여 게임 씬을 그려보자!
-    // Requirements
-    // 1. 테두리를 그려주세요
-    // 2. 뱀은 ㅁ 그거 있지 그거
-    // 3. 먹이는 카와이하게 별모야응로
-    // 4. 빈 칸은 ㄱ 한자 1 하면 나오는 전각 그림
-    // 힌트?
-    // 아래 코드는 돌아가지 않습니다 아시조
-    // for(i=0;i<height;i++) {
-    //     for(j=0;j<width;j++) {
-    //         if (map[i][j] == 먹이) cout << '카와이한 별'
-    //         else if (snake.includeJointAt(x,y)) cout << '네모';
-    //         else cout << '그 빈 칸'
-    //     }
-    // }
     int height = this->map->getHeight();
     int width = this->map->getWidth();
 	string _screen;
@@ -49,6 +34,9 @@ void Game::renderScene() {
         {
 			if (!this->map->isCoordInRange(i, j)) {
 				_screen.append("■");
+			}
+			else if (this->snake->isJointExistsAtCoord(i, j)) {
+				_screen.append("□");
 			}
 			else {
 				_screen.append("　");
@@ -62,11 +50,14 @@ void Game::renderScene() {
 
 void Game::run() {
     bool gameOver = false;
+	int height = this->map->getHeight();
+	int width = this->map->getWidth();
+
     while(!gameOver) {
         system("cls");
         this->renderScene();
 		Sleep(100);
-        gameOver = !this->snake->move();
+        gameOver = !this->snake->move(height, width);
     }
     cout << "GAME OVER!! YOUR FINAL SCORE WAS: " << this->snake->getSnakeLength() << endl;
 }
