@@ -1,6 +1,8 @@
 ﻿#include <iostream>
 #include <string>
 #include <windows.h>
+#include <ctime>
+#include <conio.h>
 #include "Game.hpp"
 #include "Snake.hpp"
 #include "GameMap.hpp"
@@ -38,6 +40,9 @@ void Game::renderScene() {
 			else if (this->snake->isJointExistsAtCoord(i, j)) {
 				_screen.append("□");
 			}
+			else if (this->map->getMap()[i][j] == 1) {
+				_screen.append("★");
+			}
 			else {
 				_screen.append("　");
 			}
@@ -53,11 +58,15 @@ void Game::run() {
 	int height = this->map->getHeight();
 	int width = this->map->getWidth();
 
+	srand(time(NULL));
+	this->map->placeFoodOnMap(height, width);
+
     while(!gameOver) {
         system("cls");
         this->renderScene();
+
 		Sleep(100);
         gameOver = !this->snake->move(height, width);
     }
-    cout << "GAME OVER!! YOUR FINAL SCORE WAS: " << this->snake->getSnakeLength() << endl;
+    cout << "\nGAME OVER!! YOUR FINAL SCORE WAS: " << this->snake->getSnakeLength() << endl;
 }

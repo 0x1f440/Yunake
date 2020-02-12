@@ -25,6 +25,7 @@ int Snake::getSnakeLength() {
 void Snake::importSnakeJoint(int y, int x) {
 	//이게 뭐하는 함수지
 	//사과를 먹는 함수라고 하네요
+
 }
 
 bool Snake::move(int mapHeight, int mapWidth) {
