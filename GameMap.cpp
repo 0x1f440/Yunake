@@ -1,7 +1,5 @@
 ﻿#include "GameMap.hpp"
 #include <memory.h>
-#include <cstdlib>
-#include <cstdlib>
 
 GameMap::GameMap(int height, int width) {
     this->height = height;
@@ -30,12 +28,7 @@ const int** GameMap::getMap() {
 }
 
 void GameMap::placeFoodOnMap(int y, int x) {
-	int rand_x, rand_y;
-	
-	rand_x = rand() % x;
-	rand_y = rand() % y;
-	
-	this->map[rand_y][rand_x] = 1;
+	this->map[y][x] = 1;
 }
 
 bool GameMap::isCoordInRange(int y, int x) {

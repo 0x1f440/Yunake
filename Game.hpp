@@ -8,6 +8,7 @@ private:
     Snake *snake;
     GameMap *map;
     void renderScene();
+	void FindCoordinateToPlaceFood();
 public:
     Game();
     Game(int mapHeight, int mapWidth);

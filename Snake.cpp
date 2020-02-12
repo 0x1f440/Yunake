@@ -44,7 +44,7 @@ int Snake::getSnakeLength() {
 void Snake::importSnakeJoint(int y, int x) {
 	//이게 뭐하는 함수지
 	//사과를 먹는 함수라고 하네요
-
+	
 }
 
 bool Snake::move(int mapHeight, int mapWidth) {
@@ -56,7 +56,7 @@ bool Snake::move(int mapHeight, int mapWidth) {
 			case DIR_UP:
 				if (isJointExistsAtCoord(sj.y+1, sj.x)) return false;
 				if (sj.y + 1 > mapHeight) return false;
-
+				
 				--sj.y;
 				break;
 

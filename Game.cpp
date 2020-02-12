@@ -2,6 +2,7 @@
 #include <string>
 #include <windows.h>
 #include <ctime>
+#include <cstdlib>
 #include <conio.h>
 #include "Game.hpp"
 #include "Snake.hpp"
@@ -52,6 +53,16 @@ void Game::renderScene() {
 	printf("%s\n%d", _screen.c_str(),sumFrame++);
 }
 
+void Game::FindCoordinateToPlaceFood() {
+	int rand_x, rand_y;
+
+	do {
+		rand_x = rand() % (this->map->getWidth());
+		rand_y = rand() % (this->map->getHeight());
+	} while (this->snake->isJointExistsAtCoord(rand_y, rand_x));
+
+	this->map->placeFoodOnMap(rand_y, rand_x);
+}
 
 void Game::run() {
     bool gameOver = false;
@@ -59,7 +70,7 @@ void Game::run() {
 	int width = this->map->getWidth();
 
 	srand(time(NULL));
-	this->map->placeFoodOnMap(height, width);
+	this->FindCoordinateToPlaceFood();
 
     while(!gameOver) {
         system("cls");
