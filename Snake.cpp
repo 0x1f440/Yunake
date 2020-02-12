@@ -13,9 +13,28 @@ Snake::Snake(int y, int x) {
 	sj.x = x / 2;
 
 	this->snakeBody.push_back(sj);
-
-	//이 코드가 왜 작동을 안하지?
 	this->direction = DIR_RIGHT;
+}
+
+void Snake::changeDirection(int keycode) {
+	switch (keycode)
+	{
+		case 72:    // key up
+			this->direction = DIR_UP;
+			break;
+
+		case 80:    // key down
+			this->direction = DIR_DOWN;
+			break;
+
+		case 77:    // key right
+			this->direction = DIR_RIGHT;
+			break;
+
+		case 75:    // key left
+			this->direction = DIR_LEFT;
+			break;
+	}
 }
 
 int Snake::getSnakeLength() {

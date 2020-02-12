@@ -64,8 +64,11 @@ void Game::run() {
     while(!gameOver) {
         system("cls");
         this->renderScene();
-
 		Sleep(100);
+
+		if (_kbhit())
+			this->snake->changeDirection(_getch());
+
         gameOver = !this->snake->move(height, width);
     }
     cout << "\nGAME OVER!! YOUR FINAL SCORE WAS: " << this->snake->getSnakeLength() << endl;
