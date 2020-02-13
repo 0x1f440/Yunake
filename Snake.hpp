@@ -14,6 +14,7 @@ enum Direction {
 struct SnakeJoint {
     int x;
     int y;
+	SnakeJoint(int y, int x);
 };
 
 class Snake {

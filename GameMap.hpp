@@ -3,12 +3,15 @@
 
 class GameMap {
 private:
+	int foodX = 0;
+	int foodY = 0;
     int height;
     int width;
     int** map;
 public:
     GameMap(int height, int width);
     ~GameMap();
+	void setFoodCoordinate(int y, int x);
     int getHeight();
     int getWidth();
     const int** getMap();

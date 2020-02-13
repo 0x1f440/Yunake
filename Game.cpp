@@ -39,6 +39,11 @@ void Game::renderScene() {
 				_screen.append("■");
 			}
 			else if (this->snake->isJointExistsAtCoord(i, j)) {
+				if (this->map->getMap()[i][j] == 1) {
+					this->snake->importSnakeJoint(i, j);
+					this->FindCoordinateToPlaceFood();
+				}
+
 				_screen.append("□");
 			}
 			else if (this->map->getMap()[i][j] == 1) {
@@ -62,6 +67,7 @@ void Game::FindCoordinateToPlaceFood() {
 	} while (this->snake->isJointExistsAtCoord(rand_y, rand_x));
 
 	this->map->placeFoodOnMap(rand_y, rand_x);
+	this->map->setFoodCoordinate(rand_y, rand_x);
 }
 
 void Game::run() {
